@@ -1,4 +1,8 @@
 def somar(a, b): 
     return a + b
 
-print(somar(1,2))
+ref = 3
+if(somar(1,2)==ref):
+    print("Passou")
+else:
+    print("Não passou")
