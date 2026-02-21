@@ -1,4 +1,4 @@
-def somar(a, b): #type: ignore
-    return a + b #type: ignore 
+def somar(a, b): 
+    return a + b
 
 print(somar(1,2))
