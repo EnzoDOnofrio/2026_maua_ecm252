@@ -3,9 +3,10 @@ const Comentario = (props) => {
     return (
         <div className="d-flex">
             <div className="d-flex align-items-center">
+                
             <img
                 src={props.avatar}
-                className="rounded-circle me-3"
+                className="rounded me-3"
                 width="100"
                 height="100"
             />
