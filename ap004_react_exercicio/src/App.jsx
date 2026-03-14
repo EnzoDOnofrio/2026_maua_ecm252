@@ -23,7 +23,7 @@ const App = () => {
     <div className="container-fluid">
 
       <div className="row justify-content-center">
-        <div className="col-12">
+        <div className="col-10">
           <Cartao cabecalho="Mary.Lockman69">
             <Comentario
               avatar="https://i.pravatar.cc/172"
@@ -36,7 +36,7 @@ const App = () => {
       </div>
 
       <div className="row justify-content-center">
-        <div className="col-12">
+        <div className="col-10">
           <Cartao cabecalho="Brock_Reichel18">
             <Comentario
               avatar="https://i.pravatar.cc/150"
@@ -49,7 +49,7 @@ const App = () => {
       </div>
 
       <div className="row justify-content-center">
-        <div className="col-12">
+        <div className="col-10">
           <Cartao cabecalho="Nils_Steuber">
             <Comentario
               avatar="https://i.pravatar.cc/100"
