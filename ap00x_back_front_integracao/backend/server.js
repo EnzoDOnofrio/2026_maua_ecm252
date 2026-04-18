@@ -75,14 +75,30 @@ app.put('/tarefas/:id', async (req, res) => {
     try{
         const { id } = req.params
         const { titulo, descricao } = req.body
-        const SQL = 'UPDATE tarefas FROM tb_tarefa SET titulo = ?, descricao = ? WHERE id = ?'
+        const SQL = 'UPDATE tb_tarefa SET titulo = ?, descricao = ? WHERE cod_tarefa = ?'
         await conexao.query(SQL, [titulo, descricao, id])
         res.json({ id, titulo, descricao })
     }
     catch(erro){
         console.log(erro)
-        req.status(500).json({
+        res.status(500).json({
             erro: 'Erro ao tentar atualizar uma tarefa'
+        })
+    }
+})
+
+//rota para remover a tarefa
+app.delete('/tarefas/:id', async (req, res) => {
+    try{
+        const { id } = req.params
+        const SQL = 'DELETE FROM tb_tarefa WHERE cod_tarefa = ?'
+        await conexao.query(SQL, [id])
+        res.status(204).send()
+    }
+    catch(erro){
+        console.log(erro)
+        res.status(500).json({
+            erro: 'Erro ao tentar remover uma tarefa'
         })
     }
 })
