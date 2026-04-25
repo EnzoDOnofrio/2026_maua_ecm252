@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '@fortawesome/fontawesome-free/css/all.css'
+import EstacaoClimatica from './EstacaoClimatica'
 
 const App = () => {
 
@@ -64,64 +66,21 @@ const App = () => {
       })
   }
 
+  useEffect(() => {
+    obterLocalizacao()
+  }, [])
+
+
   return (
     <div className="container mt-3">
       <div className="row justify-content-center">
         <div className="col-12 col-md-8">
-          <div className="card">
-            <div className="card-body">
-              <div className="row col-12 text-center">
-                <p>
-                  {
-                    latitude ?
-                      'Veja a estação'
-                      :
-                      mensagemDeErro ?
-                        mensagemDeErro
-                        :
-                        'Clique no botão para saber sua estação climática'
-                  }
-                </p>
-              </div>
-              <div className="row mb-3">
-                <div className="col-12">
-                  <button className="btn btn-primary" onClick={() => obterLocalizacao()}>
-                    Mostrar Estacao
-                  </button>
-                </div>
-              </div>
-
-              <div className="row">
-                <div className="col-12">
-                  <h4>Estacao: {estacao}</h4>
-                </div>
-              </div>
-
-              <div className="row justify-content-center">
-                <div className="col-12 col-md-10">
-                  <i class={icone}></i>
-                </div>
-              </div>
-
-              <div className="row">
-                <div className="col-12">
-                  <p>Latitude: {latitude}</p>
-                </div>
-              </div>
-
-              <div className="row">
-                <div className="col-12">
-                  <p>Longitude: {longitude}</p>
-                </div>
-              </div>
-
-              <div className="row">
-                <div className="col-12">
-                  <p>Data: {data?.toLocaleDateString()}</p>
-                </div>
-              </div>
-            </div>
-          </div>
+         <EstacaoClimatica 
+          icone = {icone}
+          estacao = {estacao}
+          latitude = {latitude}
+          longitude = {longitude}
+          obterLocalizacao={obterLocalizacao}/>
         </div>
       </div>
     </div>
