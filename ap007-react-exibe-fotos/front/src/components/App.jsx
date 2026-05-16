@@ -5,29 +5,28 @@ import 'primeicons/primeicons.css'
 import 'primereact/resources/primereact.min.css'
 import 'primereact/resources/themes/bootstrap4-light-blue/theme.css'
 import Busca from './Busca'
-import { createClient } from 'pexels'
+import ListaImagens from './ListaImagens'
+import PexelsLogo from './PexelsLogo'
+import pexelsClient from '../utils/pexelsClient'
 export default class App extends React.Component {
 
-    pexelsClient = null
-
-
-    onBuscaRealizada = (termoDeBusca) => {
-        this.pexelsClient.photos.search({
-            query: termoDeBusca
-        })
-        .then(result => console.log(result))
+    state = {
+        photos: []
     }
 
-    componentDidMount() {
-        this.pexelsClient = createClient('COLOQUE A API KEY')
+    onBuscaRealizada = (termoDeBusca) => {
+        pexelsClient.get('/search', {
+            params: { query: termoDeBusca }
+        })
+            .then(result => this.setState({ photos: result.data.photos }))
     }
 
     render() {
         return (
             <div className='grid justify-content-center m-auto w-9 border-round border-1'>
 
-                <div className='col-12'>
-                    <i className='pi pi-apple'></i>
+                <div className="col-12">
+                    <PexelsLogo />
                 </div>
                 <div className='col-12'>
                     <h1>Exibir uma lista de....</h1>
@@ -37,7 +36,13 @@ export default class App extends React.Component {
                         dica="Digite o que deseja ver..."
                         onBuscaRealizada={this.onBuscaRealizada} />
                 </div>
-
+                <div className="col-12">
+                    <div className="grid">
+                        <ListaImagens
+                            imgStyle={"col-12 md:col-6 lg:col-4 xl:col-3"}
+                            photos={this.state.photos} />
+                    </div>
+                </div>
             </div>
         )
     }
