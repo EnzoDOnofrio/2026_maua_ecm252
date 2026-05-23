@@ -1,5 +1,6 @@
 const axios = require('axios')
 const cors = require('cors')
+const dotenv = require('dotenv').config()
 const express = require('express')
 const app = express()
 app.use(cors())
@@ -9,7 +10,7 @@ app.get('/search', async function (req, res) {
     const pexelsClient = axios.create({
         baseURL: 'https://api.pexels.com/v1',
         headers: {
-            Authorization: 'COLOQUE A API KEY AQUI'
+            Authorization: process.env.PEXELS_API_KEY
         }
     })
     const { data } = await pexelsClient.get('/search', {
